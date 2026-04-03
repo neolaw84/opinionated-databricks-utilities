@@ -4,24 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "odu"
-version = "0.0.1"
+version = "0.1.0"
 description = "Opinionated Databricks Utilities"
 readme = "README.md"
 requires-python = ">=3.12"
 classifiers = [ "Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent",]
-dependencies = [ "ebooklib", "markdown", "click", "PyYAML", "cookiecutter", "langgraph", "langchain", "langchain_openai", "python-dotenv", "markdownify", ]
+dependencies = [ "ebooklib", "markdown", "click", "PyYAML", "cookiecutter", "langgraph", "langchain", "langchain_openai", "python-dotenv", "markdownify",]
 
 [project.optional-dependencies]
-dev = [
-    "pytest",
-    "pytest-cov",
-    "pre-commit",
-    "nbstripout",
-    "mkdocs",
-    "mkdocstrings[python]",
-    "jupyter",
-    "ipykernel",
-]
+dev = [ "pytest", "pytest-cov", "pre-commit", "nbstripout", "mkdocs", "mkdocstrings[python]", "jupyter", "ipykernel",]
 
 [project.scripts]
 md2epub = "md2epub.cli:main"
