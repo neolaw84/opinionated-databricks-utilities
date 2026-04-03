@@ -9,7 +9,8 @@ description = "Opinionated Databricks Utilities"
 readme = "README.md"
 requires-python = ">=3.12"
 classifiers = [ "Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent",]
-dependencies = [ "ebooklib", "markdown", "click", "PyYAML", "cookiecutter", "langgraph", "langchain", "langchain_openai", "python-dotenv", "markdownify", ]
+dependencies = [  
+    ]
 
 [project.optional-dependencies]
 dev = [
