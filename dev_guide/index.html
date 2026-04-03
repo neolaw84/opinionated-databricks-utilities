@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ed. Law" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Developer Guide - ODU — Opinionated Databricks Utilities</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Developer Guide";
+        var mkdocs_page_input_path = "dev_guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ODU — Opinionated Databricks Utilities
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../user_guide/">User Guide</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Developer Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#development-setup">Development Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#running-tests">Running Tests</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#thresholds">Thresholds</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#test-layout">Test Layout</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#project-architecture">Project Architecture</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#public-api-bootstrappy">Public API (bootstrap.py)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#internal-helpers-bootstrappy">Internal Helpers (bootstrap.py)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#design-principles">Design Principles</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#branch-pr-workflow">Branch &amp; PR Workflow</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#release-workflow">Release Workflow</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../reference/bootstrap/">Bootstrap</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reference/exceptions/">Exceptions</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ODU — Opinionated Databricks Utilities</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Developer Guide</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/neolaw84/opinionated-databricks-utilities/edit/main/docs/dev_guide.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="developer-guide">Developer Guide</h1>
+<h2 id="development-setup">Development Setup</h2>
+<ol>
+<li>Clone the repository:</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/neolaw84/opinionated-databricks-utilities.git
+cd opinionated-databricks-utilities
+</code></pre>
+<ol>
+<li>Create and activate a virtual environment:</li>
+</ol>
+<pre><code class="language-bash">python -m venv venv
+source venv/bin/activate       # Linux/macOS
+.\venv\Scripts\activate        # Windows
+</code></pre>
+<ol>
+<li>Install the package in editable mode with development dependencies:</li>
+</ol>
+<pre><code class="language-bash">pip install -e &quot;.[dev]&quot;
+</code></pre>
+<hr />
+<h2 id="running-tests">Running Tests</h2>
+<p>The project uses <strong>pytest</strong> for testing, following a strict <strong>TDD</strong> approach (tests are
+written before implementation). A custom script <code>scripts/run_tests.py</code> runs tests and
+enforces quality thresholds.</p>
+<pre><code class="language-bash">python scripts/run_tests.py
+</code></pre>
+<p>Or run pytest directly (without the threshold enforcement):</p>
+<pre><code class="language-bash">pytest tests/ -v --no-cov
+</code></pre>
+<h3 id="thresholds">Thresholds</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test failure rate</td>
+<td>Must be <strong>≤ 20%</strong></td>
+</tr>
+<tr>
+<td>Coverage (codebase &lt; 1000 lines)</td>
+<td>Must be <strong>≥ 60%</strong></td>
+</tr>
+<tr>
+<td>Coverage (codebase ≥ 1000 lines)</td>
+<td>Must be <strong>≥ 80%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="test-layout">Test Layout</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it tests</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tests/test_find_repo_root.py</code></td>
+<td><code>_find_repo_root</code> and <code>_check_markers</code> — core traversal logic</td>
+</tr>
+<tr>
+<td><code>tests/test_repo_root_finder.py</code></td>
+<td><code>repo_root_finder</code> — public API integration</td>
+</tr>
+<tr>
+<td><code>tests/test_add_src_path.py</code></td>
+<td><code>add_src_path_to_sys_path</code> — sys.path management</td>
+</tr>
+<tr>
+<td><code>tests/test_build_return.py</code></td>
+<td><code>_build_return_value</code> — return value construction</td>
+</tr>
+</tbody>
+</table>
+<p>All tests run without a Databricks environment — <code>dbutils</code> is mocked and filesystem
+operations use <code>pytest</code>'s <code>tmp_path</code> fixture.</p>
+<hr />
+<h2 id="project-architecture">Project Architecture</h2>
+<p>The utility module lives entirely under <code>src/odu/</code>:</p>
+<pre><code>src/odu/
+├── __init__.py       - Public exports
+├── bootstrap.py      - All public and internal functions
+└── exceptions.py     - RepoRootNotFoundError, NotebookPathError
+</code></pre>
+<h3 id="public-api-bootstrappy">Public API (<code>bootstrap.py</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>repo_root_finder</code></td>
+<td>function</td>
+<td>Locates the repository root using <code>dbutils</code></td>
+</tr>
+<tr>
+<td><code>add_src_path_to_sys_path</code></td>
+<td>function</td>
+<td>Adds <code>src/</code> to <code>sys.path</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="internal-helpers-bootstrappy">Internal Helpers (<code>bootstrap.py</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_get_notebook_path(dbutils)</code></td>
+<td>Retrieves notebook path from <code>dbutils</code>, prepends <code>/Workspace/</code></td>
+</tr>
+<tr>
+<td><code>_get_notebook_dir(dbutils)</code></td>
+<td>Returns the directory of the notebook (parent of <code>_get_notebook_path</code>)</td>
+</tr>
+<tr>
+<td><code>_find_repo_root(start, markers, strategy, k, max_depth)</code></td>
+<td>Walks upward finding the repo root</td>
+</tr>
+<tr>
+<td><code>_check_markers(directory, markers, strategy, k)</code></td>
+<td>Tests if a directory matches the marker criteria</td>
+</tr>
+<tr>
+<td><code>_build_return_value(repo_root, returns, notebook_path)</code></td>
+<td>Constructs the return value (str or dict)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="design-principles">Design Principles</h3>
+<p>The module applies SOLID principles through <strong>parameter injection</strong> rather than class hierarchies:</p>
+<ul>
+<li><code>dbutils</code> is always injected — makes the code testable without a Databricks runtime.</li>
+<li><code>sys</code> is always injected — makes <code>add_src_path_to_sys_path</code> testable without polluting the real <code>sys.path</code>.</li>
+<li>All filesystem logic uses <code>os.path</code> — pure and mockable.</li>
+</ul>
+<hr />
+<h2 id="branch-pr-workflow">Branch &amp; PR Workflow</h2>
+<pre><code>feature/* → dev → main
+</code></pre>
+<ul>
+<li><strong>Feature branches</strong> must target <code>dev</code>.</li>
+<li><strong>PRs to <code>main</code></strong> must come from <code>dev</code>.</li>
+<li>Merging to <code>main</code> triggers the release workflow automatically.</li>
+</ul>
+<h2 id="release-workflow">Release Workflow</h2>
+<p>Releases are fully automated via GitHub Actions:</p>
+<ol>
+<li>Open a PR from <code>dev</code> → <code>main</code>.</li>
+<li>Label the PR with <code>bump:major</code>, <code>bump:patch</code>, or leave unlabelled (defaults to <code>minor</code>).</li>
+<li>Merge the PR.</li>
+<li>GitHub Actions will:<ul>
+<li>Bump the version in <code>pyproject.toml</code>.</li>
+<li>Create a tagged GitHub Release.</li>
+<li>Publish to PyPI via Trusted Publishing (OIDC).</li>
+<li>Deploy updated documentation to GitHub Pages.</li>
+</ul>
+</li>
+</ol>
+<p>See the <a href="https://neolaw84.github.io/opinionated-databricks-utilities/">Publishing Guide</a> for
+first-time PyPI setup (Trusted Publishing configuration).</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../user_guide/" class="btn btn-neutral float-left" title="User Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../reference/bootstrap/" class="btn btn-neutral float-right" title="Bootstrap">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/neolaw84/opinionated-databricks-utilities" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../user_guide/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../reference/bootstrap/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

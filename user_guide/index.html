@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Ed. Law" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>User Guide - ODU — Opinionated Databricks Utilities</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "User Guide";
+        var mkdocs_page_input_path = "user_guide.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/bash.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ODU — Opinionated Databricks Utilities
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">User Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#background">Background</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-two-cell-pattern">The Two-Cell Pattern</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#repo_root_finder-reference">repo_root_finder Reference</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#return-value">Return Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dict-keys-when-returnsall-or-a-list">Dict Keys (when returns="all" or a list)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#add_src_path_to_sys_path-reference">add_src_path_to_sys_path Reference</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#parameters_1">Parameters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exceptions">Exceptions</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dev_guide/">Developer Guide</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../reference/bootstrap/">Bootstrap</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reference/exceptions/">Exceptions</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ODU — Opinionated Databricks Utilities</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">User Guide</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/neolaw84/opinionated-databricks-utilities/edit/main/docs/user_guide.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="user-guide">User Guide</h1>
+<h2 id="background">Background</h2>
+<p>Most Databricks repositories have a structure similar to:</p>
+<pre><code>my-repo/
+├── configs/
+├── resources/
+├── databricks-resources/
+├── notebooks/
+├── src/
+├── pyproject.toml
+├── requirements.txt
+└── README.md
+</code></pre>
+<p>When a notebook runs <strong>interactively</strong>, the current working directory is the notebook's
+own directory, so relative paths and <code>pip install -r requirements.txt</code> work normally.</p>
+<p>When the same notebook runs <strong>as a Databricks workflow task</strong>, the current working
+directory is a random location on the cluster. Imports break, and you cannot find
+<code>requirements.txt</code>.</p>
+<p>ODU provides two utilities to fix this:</p>
+<ul>
+<li><strong><code>repo_root_finder</code></strong> — walks up from the notebook's location to find the repository root.</li>
+<li><strong><code>add_src_path_to_sys_path</code></strong> — adds <code>src/</code> to <code>sys.path</code> so your packages are importable.</li>
+</ul>
+<hr />
+<h2 id="installation">Installation</h2>
+<pre><code class="language-bash">pip install odu
+</code></pre>
+<hr />
+<h2 id="usage">Usage</h2>
+<h3 id="the-two-cell-pattern">The Two-Cell Pattern</h3>
+<p>Because <code>dbutils.library.restartPython()</code> wipes the Python context, you need two cells.</p>
+<p><strong>Cell 1 — Install requirements (runs once, then triggers a restart)</strong></p>
+<pre><code class="language-python">import sys
+from odu.bootstrap import repo_root_finder, add_src_path_to_sys_path
+
+# Find repository root (returns repo root as a string by default)
+repo_root = repo_root_finder(dbutils)
+print(f&quot;Repo root: {repo_root}&quot;)
+
+# Install dependencies
+%pip install -r {repo_root}/requirements.txt
+
+# Restart Python to make new packages available
+dbutils.library.restartPython()
+</code></pre>
+<p><strong>Cell 2 — Set up sys.path (after restart)</strong></p>
+<pre><code class="language-python">import sys
+from odu.bootstrap import repo_root_finder, add_src_path_to_sys_path
+
+repo_root = repo_root_finder(dbutils)
+add_src_path_to_sys_path(repo_root, sys)
+
+# Now import from src/ as normal
+from my_package import my_module
+</code></pre>
+<hr />
+<h2 id="repo_root_finder-reference"><code>repo_root_finder</code> Reference</h2>
+<pre><code class="language-python">repo_root_finder(
+    dbutils,
+    match_strategy=&quot;at least one&quot;,
+    *,
+    markers=None,
+    k=1,
+    max_depth=10,
+    returns=None,
+)
+</code></pre>
+<h3 id="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dbutils</code></td>
+<td>object</td>
+<td><em>required</em></td>
+<td>The Databricks <code>dbutils</code> object.</td>
+</tr>
+<tr>
+<td><code>match_strategy</code></td>
+<td><code>str</code></td>
+<td><code>"at least one"</code></td>
+<td>How many markers must be present to identify the repo root. One of <code>"at least one"</code>, <code>"at least k"</code>, <code>"all"</code>.</td>
+</tr>
+<tr>
+<td><code>markers</code></td>
+<td><code>list[str]</code></td>
+<td><code>["src", "notebooks", "requirements.txt"]</code></td>
+<td>File/directory names that identify the repository root.</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td><code>int</code></td>
+<td><code>1</code></td>
+<td>Minimum number of markers required when using <code>"at least k"</code> strategy.</td>
+</tr>
+<tr>
+<td><code>max_depth</code></td>
+<td><code>int</code></td>
+<td><code>10</code></td>
+<td>Maximum number of parent directories to check.</td>
+</tr>
+<tr>
+<td><code>returns</code></td>
+<td><code>None \| "all" \| list[str]</code></td>
+<td><code>None</code></td>
+<td>Controls the return type. See below.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-value">Return Value</h3>
+<table>
+<thead>
+<tr>
+<th><code>returns</code> value</th>
+<th>Return type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>None</code> (default)</td>
+<td><code>str</code></td>
+<td>Repository root path.</td>
+</tr>
+<tr>
+<td><code>"all"</code></td>
+<td><code>dict</code></td>
+<td>All discovered paths (see keys below).</td>
+</tr>
+<tr>
+<td><code>list[str]</code></td>
+<td><code>dict</code></td>
+<td>Only the requested keys (plus <code>repo_root</code> always).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dict-keys-when-returnsall-or-a-list">Dict Keys (when <code>returns="all"</code> or a list)</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>repo_root</code></td>
+<td>The discovered repository root (always present)</td>
+</tr>
+<tr>
+<td><code>notebook_path</code></td>
+<td>The notebook file itself (from <code>dbutils</code>)</td>
+</tr>
+<tr>
+<td><code>src_path</code></td>
+<td><code>repo_root/src</code></td>
+</tr>
+<tr>
+<td><code>requirements_path</code></td>
+<td><code>repo_root/requirements.txt</code></td>
+</tr>
+<tr>
+<td><code>notebooks_dir_path</code></td>
+<td><code>repo_root/notebooks</code></td>
+</tr>
+<tr>
+<td><code>configs_path</code></td>
+<td><code>repo_root/configs</code></td>
+</tr>
+<tr>
+<td><code>resources_path</code></td>
+<td><code>repo_root/resources</code></td>
+</tr>
+<tr>
+<td><code>databricks_resources_path</code></td>
+<td><code>repo_root/databricks-resources</code></td>
+</tr>
+</tbody>
+</table>
+<p>!!! note
+    Dict values are <code>None</code> when the corresponding path does not exist on disk.</p>
+<h3 id="examples">Examples</h3>
+<pre><code class="language-python"># Default: returns repo root as a string
+repo_root = repo_root_finder(dbutils)
+
+# All paths as a dict
+fs = repo_root_finder(dbutils, returns=&quot;all&quot;)
+print(fs[&quot;src_path&quot;])           # /Workspace/Repos/.../src
+print(fs[&quot;requirements_path&quot;])  # /Workspace/Repos/.../requirements.txt
+
+# Selective keys
+fs = repo_root_finder(dbutils, returns=[&quot;src_path&quot;, &quot;requirements_path&quot;])
+
+# Custom markers, require at least 2
+repo_root = repo_root_finder(
+    dbutils,
+    match_strategy=&quot;at least k&quot;,
+    k=2,
+    markers=[&quot;src&quot;, &quot;notebooks&quot;, &quot;requirements.txt&quot;, &quot;pyproject.toml&quot;],
+)
+</code></pre>
+<hr />
+<h2 id="add_src_path_to_sys_path-reference"><code>add_src_path_to_sys_path</code> Reference</h2>
+<pre><code class="language-python">add_src_path_to_sys_path(fs, sys_module)
+</code></pre>
+<h3 id="parameters_1">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fs</code></td>
+<td><code>str \| dict</code></td>
+<td>Either a repo root string or a dict from <code>repo_root_finder</code>.</td>
+</tr>
+<tr>
+<td><code>sys_module</code></td>
+<td>module</td>
+<td>The <code>sys</code> module. Always pass <code>sys</code> explicitly.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>If <code>fs</code> is a <strong><code>str</code></strong>, the function adds <code>fs + "/src"</code> to <code>sys.path</code>.</li>
+<li>If <code>fs</code> is a <strong><code>dict</code></strong>, the function uses <code>fs["src_path"]</code>. Raises <code>ValueError</code> if <code>src_path</code> is missing or <code>None</code>.</li>
+</ul>
+<h3 id="errors">Errors</h3>
+<table>
+<thead>
+<tr>
+<th>Exception</th>
+<th>Cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FileNotFoundError</code></td>
+<td>The <code>src/</code> directory does not exist on disk.</td>
+</tr>
+<tr>
+<td><code>ValueError</code></td>
+<td><code>fs</code> is a dict but <code>src_path</code> is missing or <code>None</code>.</td>
+</tr>
+<tr>
+<td><code>TypeError</code></td>
+<td><code>fs</code> is not a <code>str</code> or <code>dict</code>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exceptions">Exceptions</h2>
+<p>Both functions may raise the following ODU-specific exceptions:</p>
+<table>
+<thead>
+<tr>
+<th>Exception</th>
+<th>When raised</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>odu.exceptions.RepoRootNotFoundError</code></td>
+<td>No repo root found within <code>max_depth</code> levels.</td>
+</tr>
+<tr>
+<td><code>odu.exceptions.NotebookPathError</code></td>
+<td><code>dbutils</code> call failed (e.g., running outside Databricks).</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dev_guide/" class="btn btn-neutral float-right" title="Developer Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/neolaw84/opinionated-databricks-utilities" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../dev_guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
