@@ -1,0 +1,32 @@
+site_name: ODU — Opinionated Databricks Utilities
+site_description: Utilities to bootstrap Databricks notebook environments when running as workflow tasks.
+site_author: Ed. Law
+repo_url: https://github.com/neolaw84/opinionated-databricks-utilities
+edit_uri: edit/main/docs/
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - python
+    - yaml
+    - bash
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_root_heading: true
+            show_source: true
+
+nav:
+  - Home: index.md
+  - User Guide: user_guide.md
+  - Developer Guide: dev_guide.md
+  - API Reference:
+      - Bootstrap: reference/bootstrap.md
+      - Exceptions: reference/exceptions.md
+  - License: license.md
