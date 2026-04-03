@@ -1,0 +1,16 @@
+name: Main Branch Protection
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  check-source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if PR is from dev
+        if: github.head_ref != 'dev'
+        run: |
+          echo "ERROR: Pull requests to main must come from the 'dev' branch."
+          echo "Current head ref: ${{ github.head_ref }}"
+          exit 1
